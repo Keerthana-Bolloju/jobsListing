@@ -1,0 +1,17 @@
+table, td, th {  
+    border: 1px solid rgba(0,0,0,0.7);
+    text-align: left;
+  }
+  
+  table {
+    border-collapse: collapse;
+    width: 100%;
+  }
+  
+  th, td {
+    padding: 15px;
+  }
+
+  th {
+    font-weight:bold;
+}

@@ -1,0 +1,46 @@
+<div class="container py-5">
+  <div class="d-flex flex-column">
+    <h1 class="text-center">Job Listing</h1>
+    <h6 class="text-center"><a href="https://github.com/Keerthana-Bolloju/jobsListing" target="_blank"> Click Here for Github Repo</a></h6>
+  </div>
+  <div class="d-flex pb-3">
+      <div class="px-2" style="flex-grow: 3">
+          <input type="text" [(ngModel)]="inputText" (input)="search()" placeholder="Search By Company or skills or experience or location"
+           style="background:transparent;width: 100%;
+           border: none;
+           border-bottom: 1px solid #000;">
+      </div>
+    <div class="px-2">
+        <p *ngIf="jobsData.data">No of Searches Appeared : {{jobsData.data.length}}/1709</p>
+    </div>
+    
+  </div>
+  <div class="row" *ngIf="jobsData.data.length == 0">
+    <h5 class="text-center">No data found. Please search with another keyword</h5>
+  </div>
+  <div class="row"> 
+    <table class="table table-hover">
+      <thead>
+        <tr>
+          <th>Title</th>
+          <th>Company</th>
+          <th>Skills</th>
+          <th>Experience</th>
+          <th>Location</th>
+          <th>Apply Here</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let data of jobsData.data | paginate:{ itemsPerPage:10, currentPage:pageNo }">
+          <td>{{data.title}}</td>
+          <td>{{data.companyname}}</td>
+          <td>{{data.skills}}</td>
+          <td>{{data.experience}}</td>
+          <td>{{data.location}}</td>
+          <td><a href="{{data.applylink}}" target="_blank">Apply</a></td>
+        </tr>
+      </tbody>
+    </table>
+    <pagination-controls (pageChange)="pageNo=$event"></pagination-controls>
+  </div>
+</div>
